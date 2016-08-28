@@ -35,3 +35,20 @@ item = \inp -> case inp of
    [] -> []
    (x:xs) -> [(x, xs)]
 ```
+
+### Parser combinators
+- glue primitive parsers to form more useful ones
+
+1) bind combinator
+```haskell
+bind :: Parser a -> (a -> Parser b) -> Parser b
+bind p f = \inp -> concat [f v inp' | (v, inp') <- p inp]
+```
+
+we can build a more complex parser using bind, to glue more than 1 parser together:
+```haskell
+p1 `bind` \x1 ->
+p2 `bind` \x2 ->
+pn `bind` \xn ->
+result (f x1 x2 xn)
+```
