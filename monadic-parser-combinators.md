@@ -67,3 +67,5 @@ Example of using the plus combinator: if we are trying to match a letter and don
 letter :: Parser Char
 letter = lower `plus` upper
 ```
+
+### Repetition combinators
